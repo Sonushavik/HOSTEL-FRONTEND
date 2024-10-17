@@ -2,19 +2,30 @@ import React from 'react'
 import { MdEmail } from "react-icons/md";
 import { BsLinkedin } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
+import { Link } from 'react-scroll';
 
 const Footer = () => {
   return (
     <>
-    <div className='bg-black'>
+    <div className='bg-black mx-auto max-w-[1240px]'>
       <div className=" text-white text-[10px] grid grid-cols-2 mx-auto max-w-[1000px] gap-2">
         <div className=' grid '>
             <ul className='sm:flex gap-2 p-2'>
-                <li>Home</li>
-                <li>About</li>
-                <li>Facility</li>
-                <li>Contact</li>
-                <li>Gallery</li>
+            <li >
+                  <Link to="banner" smooth={true} duration={500} className='hover:text-gray-400 hover:font-bold cursor-pointer'>Home</Link>
+                </li>
+              <li>
+                <Link to="about" smooth={true} duration ={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>About</Link>
+              </li>
+              <li>
+                <Link to="service" smooth={true} duration={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>Facility</Link>
+              </li>
+              <li>
+                <Link to="contact" smooth={true} duration={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>Contact</Link>
+              </li>
+              <li>
+                <Link to="gallery" smooth="true" duration={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>Gallery</Link>
+              </li>
             </ul>
             <div className='flex gap-2 m-2 '>
                 <p>Developer-Contact</p>

@@ -66,7 +66,7 @@ const Header = () => {
         </div>
 
         {/* Responsive Mobile Menu */}
-        <ul className={`py-2 duration-300 md:hidden text-white fixed bg-black top-[65px] text-center w-full ${toggle ? 'left-0' : 'left-[100%]'}`}>
+        <ul className={`py-2 mx-auto duration-300 md:hidden text-white fixed bg-black top-[65px] text-center w-screen ${toggle ? 'left-0' : 'left-[100%]'}`}>
           <li className='pt-2 hover:text-gray-400 hover:font-bold cursor-pointer'>
                 <Link to="banner" smooth={true} duration={500}>Home</Link>
           </li>
