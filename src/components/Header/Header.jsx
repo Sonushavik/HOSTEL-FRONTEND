@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { RiMenuFold3Fill, RiMenuUnfold3Fill } from "react-icons/ri";
-import { FiLogIn } from "react-icons/fi"; 
+import { FiLogIn } from "react-icons/fi";
 import { FaLocationDot } from "react-icons/fa6";
-import { Link } from 'react-scroll';
+import { Link as ScrollLink } from 'react-scroll';
+import { Link } from 'react-router-dom';
+import { useAuth } from '../../store/auth';
+// const navigate = useNavigate();
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+const {isLoggedIn,user} = useAuth();
+
+useEffect(() => {
+    console.log("User or login status changed:", isLoggedIn, user);
+},[isLoggedIn,user]);
 
   return (
     <>
@@ -16,10 +24,10 @@ const Header = () => {
             <p>JKT Boys Hostel</p>
             <p className='text-[8px] flex'>
               <FaLocationDot className="mt-1 sm:mt-[13px] mr-1" />
-              <a 
-                href="https://maps.app.goo.gl/pdero7HMEtvVSmnG9" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://maps.app.goo.gl/pdero7HMEtvVSmnG9"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:underline sm:mt-[10px]"
               >
                 Muzaffarpur, Bihar
@@ -29,7 +37,7 @@ const Header = () => {
 
           {/* Hamburger Icon for Mobile Menu */}
           <div className='flex items-center'>
-            {toggle ? 
+            {toggle ?
               <RiMenuUnfold3Fill onClick={() => setToggle(!toggle)} className='text-white text-2xl md:hidden block' />
               :
               <RiMenuFold3Fill onClick={() => setToggle(!toggle)} className='text-white text-2xl md:hidden block' />
@@ -38,53 +46,79 @@ const Header = () => {
             {/* Main Navigation for Desktop */}
             <ul className='hidden md:flex text-white gap-10'>
 
-                <li >
-                  <Link to="banner" smooth={true} duration={500} className='hover:text-gray-400 hover:font-bold cursor-pointer'>Home</Link>
-                </li>
-              <li>
-                <Link to="about" smooth={true} duration ={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>About</Link>
+              <li >
+                <Link to="/"  className='hover:text-gray-400 hover:font-bold cursor-pointer'>Home</Link>
               </li>
               <li>
-                <Link to="service" smooth={true} duration={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>Facility</Link>
+                <ScrollLink to="about" smooth={true} duration={100} className='hover:text-gray-400 hover:font-bold cursor-pointer'>About</ScrollLink>
               </li>
               <li>
-                <Link to="contact" smooth={true} duration={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>Contact</Link>
+                <ScrollLink to="service" smooth={true} duration={200} className='hover:text-gray-400 hover:font-bold cursor-pointer'>Facility</ScrollLink>
               </li>
               <li>
-                <Link to="gallery" smooth="true" duration={500}  className='hover:text-gray-400 hover:font-bold cursor-pointer'>Gallery</Link>
+                <ScrollLink to="contact" smooth={true} duration={300} className='hover:text-gray-400 hover:font-bold cursor-pointer'>Contact</ScrollLink>
               </li>
+              <li>
+                <ScrollLink to="gallery" smooth="true" duration={400} className='hover:text-gray-400 hover:font-bold cursor-pointer'>Gallery</ScrollLink>
+              </li>
+
             </ul>
 
             {/* Responsive Login Button (remains outside of the mobile menu) */}
             <div className='ml-5'>
-              <button className='flex items-center gap-2 bg-white text-red-900 px-3 py-2 rounded-md hover:bg-gray-200 transition-all'>
-                <FiLogIn className='text-xl' /> {/* Login icon */}
-                <span className='hidden md:inline'>Admin</span> {/* Show 'Login' only on medium screens and above */}
-              </button>
+              {
+                isLoggedIn ? (
+                  <>
+                  <Link to="/logout">
+                <button className='flex items-center gap-2 bg-white text-red-900 px-3 py-2 rounded-md hover:bg-gray-200 transition-all'>
+                  <FiLogIn className='text-xl' />
+                  <span className='hidden md:inline'>Logout</span>
+                </button>
+              </Link>
+
+              <Link to={`/profile/${user._id}`}>
+                <button className='flex items-center gap-2 bg-white text-red-900 px-3 py-2 rounded-md hover:bg-gray-200 transition-all'>
+                  <FiLogIn className='text-xl' />
+                  <span className='hidden md:inline'>Profile</span>
+                </button>
+              </Link>
+              </>
+                ) : (
+                  <Link to="/login">
+                <button className='flex items-center gap-2 bg-white text-red-900 px-3 py-2 rounded-md hover:bg-gray-200 transition-all'>
+                  <FiLogIn className='text-xl' />
+                  <span className='hitdden md:inline'>Login</span>
+                </button>
+              </Link>
+                )
+              }
+              
             </div>
+
           </div>
         </div>
 
         {/* Responsive Mobile Menu */}
         <ul className={`py-2 mx-auto duration-300 md:hidden text-white fixed bg-black top-[65px] text-center w-screen ${toggle ? 'left-0' : 'left-[100%]'}`}>
           <li className='pt-2 hover:text-gray-400 hover:font-bold cursor-pointer'>
-                <Link to="banner" smooth={true} duration={500}>Home</Link>
+            {/* <ScrollLink to="/" smooth={true} duration={100}>Home</ScrollLink> */}
+            <Link to="/">Home</Link>
           </li>
           <li className='pt-2 hover:text-gray-400 hover:font-bold cursor-pointer'>
-                <Link to="about" smooth={true} duration={500}>About</Link>
+            <ScrollLink to="about" smooth={true} duration={200}>About</ScrollLink>
           </li>
           <li className='pt-2 hover:text-gray-400 hover:font-bold cursor-pointer'>
-                <Link to="service" smooth={true} duration={500}>Facility</Link>
+            <ScrollLink to="service" smooth={true} duration={300}>Facility</ScrollLink>
           </li>
           <li className='pt-2 hover:text-gray-400 hover:font-bold cursor-pointer'>
-          <Link to="contact" smooth={true} duration={500}>Contact</Link>
+            <ScrollLink to="contact" smooth={true} duration={400}>Contact</ScrollLink>
           </li>
           <li className='pt-2 hover:text-gray-400 hover:font-bold cursor-pointer'>
-          <Link to="gallery" smooth={true} duration={500}>Gallery</Link>
+            <ScrollLink to="gallery" smooth={true} duration={500}>Gallery</ScrollLink>
           </li>
 
           <li className='pt-2 hover:text-gray-400 hover:font-bold cursor-pointer'>
-          <Link to="testonomials" smooth={true} duration={500}>Testonomials</Link>
+            <ScrollLink to="testonomials" smooth={true} duration={600}>Testonomials</ScrollLink>
           </li>
         </ul>
       </div>

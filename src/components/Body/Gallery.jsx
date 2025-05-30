@@ -63,7 +63,7 @@ const Gallery = () => {
           {images.map((d, index) => (
             <div key={index} className=' m-4   rounded-t-xl overflow-y-auto '>
                 <div className='m-3 bg-gradient-to-b from-red-900 to-red-100 rounded-md w-fit h-auto'>
-              <div className='text-justify m-1 p-2'>
+              <div className='text-justify m-1 p-2'> 
                 <img src={d.img}></img>
               </div>
               </div>

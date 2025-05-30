@@ -1,37 +1,35 @@
 import React from 'react'
-import Header from './components/Header/Header'
-import Banner from './components/Body/Banner'
-import About  from './components/Body/About'
-import Plans from './components/Body/Plans'
-import Service from './components/Body/Service'
-import ContactUs from './components/Body/ContactUs'
-import Gallery from './components/Body/Gallery'
-import Testinomials from './components/Body/Testinomials'
-import Footer from './components/Footer/Footer'
+import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainLayout from './components/Layout/MainLayout'
+import Home from './components/pages/Home'
+import Login from './components/pages/Login';
+import ErrorPage from './components/pages/Error';
+import Register from './components/pages/Register';
+import Logout from './components/pages/Logout';
+import Profile from './components/pages/Profile';
+import { useAuth } from './store/auth';
+import ApplicationForm from './components/pages/ApplicationForm';
+import ViewApplication from './components/pages/ViewApplication';
 const App = () => {
+
+  const {isLoggedIn, user} = useAuth();
+
   return (
-    <>
-      {/* <Header/> */}
-
-      <Header/>
-      <section id="banner"><Banner/></section>
-      <section id='about'><About/></section>
-      <section id='service'><Service/></section>
-      <section id='contact'><ContactUs/></section>
-      <section id='gallery'><Gallery/></section>
-      <Testinomials/>
-      <Footer/>
-      
-      {/* <Banner/> */}
-      {/* <Service/> */}
-      {/* <About/> */}
-      {/* <Plans/> */}
-      {/* <ContactUs/> */}
-      {/* <Gallery/> */}
-      {/* <Testinomials/> */}
-    
-
-    </>
+    <Router>
+      <Routes>
+        <Route path='/' element={<MainLayout/>}>
+              <Route index element={<Home/>} />
+              <Route path='login' element={<Login/>}/>
+              <Route path='register' element={<Register/>}/>
+              <Route path='logout' element={<Logout/>}/>
+              {isLoggedIn && <Route path='profile/:userId' element={<Profile />} />}
+              {isLoggedIn && <Route path='applicationForm' element={<ApplicationForm />} />}
+                {isLoggedIn && <Route path='viewApplication/:userId' element={<ViewApplication/>} />}
+              <Route path='*' element={<ErrorPage/>}/>
+        </Route>
+        </Routes>
+    </Router>
   )
 }
 

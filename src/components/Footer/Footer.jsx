@@ -7,7 +7,7 @@ import { Link } from 'react-scroll';
 const Footer = () => {
   return (
     <>
-    <div className='bg-black mx-auto max-w-[1240px]'>
+    <div className='bg-black mx-auto max-w-[1240px] overflow-scroll'>
       <div className=" text-white text-[10px] grid grid-cols-2 mx-auto max-w-[1000px] gap-2">
         <div className=' grid '>
             <ul className='sm:flex gap-2 p-2'>

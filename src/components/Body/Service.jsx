@@ -17,7 +17,7 @@ const Service = () => {
                     <img src={room}></img>
                 </div>
                 <div className='text-center font-bold py-2'>Room</div>
-                <div className="overflow-y-auto h-[80px] px-4 text-justify">
+                <div className="overflow-y-scroll scrollbar-hide h-[80px] px-4 text-justify">
                 The room provides cozy, modern furnishings and a relaxing atmosphere.
                 </div>
             </div>
@@ -26,7 +26,7 @@ const Service = () => {
                     <img src={library} className=''></img>
                 </div>
                 <div className='text-center font-bold py-2'>Library</div>
-                <div className="overflow-y-auto h-[80px] px-4 text-justify">
+                <div className="overflow-y-scroll scrollbar-hide h-[80px] px-4 text-justify">
                 The library offers a quiet space with extensive resources for studying.
                 </div>
             </div>
@@ -35,7 +35,7 @@ const Service = () => {
                     <img src={mess}></img>
                 </div>
                 <div className='text-center font-bold py-2'>Mess</div>
-                <div className="overflow-y-auto h-[80px] px-4 text-justify">
+                <div className="overflow-y-scroll scrollbar-hide h-[80px] px-4 text-justify">
                 The mess provides nutritious meals in a clean and comfortable dining area.
                 </div>
             </div>
@@ -44,7 +44,7 @@ const Service = () => {
                     <img src={wifi}></img>
                 </div>
                 <div className='text-center font-bold py-2'>Wifi</div>
-                <div className="overflow-y-auto h-[80px] px-4 text-justify">
+                <div className="overflow-y-scroll scrollbar-hide h-[80px] px-4 text-justify">
                 The hostel offers free, high-speed Wi-Fi for uninterrupted internet access.
                 </div>
             </div>
@@ -62,7 +62,7 @@ const Service = () => {
                     <img src={watchman}></img>
                 </div>
                 <div className='text-center font-bold py-2'>WatchMan</div>
-                <div className="overflow-y-auto h-[80px] px-4 text-justify">
+                <div className="overflow-y-scroll scrollbar-hide h-[80px] px-4 text-justify">
                 The watchman provides 24/7 security, ensuring a safe living environment.
                 </div>
             </div>
