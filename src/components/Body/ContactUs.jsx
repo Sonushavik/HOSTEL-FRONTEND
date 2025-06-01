@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import {
 	FaMapMarkerAlt,
 	FaEnvelope,
 	FaPhoneAlt,
 	FaClock,
 } from "react-icons/fa";
-import { useAuth } from "../../store/auth";
+import { useAuth, API } from "../../store/auth";
 
-const URL = "http://localhost:8080/api/contact/form";
+const URL = `${API}/api/contact/form`;
 
 function ContactUs() {
 	const [contact, setContact] = useState({
@@ -48,7 +51,7 @@ function ContactUs() {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(contact),
+				// body: JSON.stringify(contact),
 			});
 			const res_data = response.json();
 			console.log(res_data);
@@ -64,7 +67,14 @@ function ContactUs() {
 
 	return (
 		<div className=" max-w-[1240px] flex flex-col items-center justify-center py-10 bg-red-900 bg-opacity-10 mx-auto ">
-			<h className="text-[20px] md:text-[30px] font-bold mb-8 ">Contact Us</h>
+			<ToastContainer
+				position="top-right"
+				autoClose={3000}
+				closeOnClick
+				pauseOnHover
+				theme="colored"
+			/>
+			<h3 className="text-[20px] md:text-[30px] font-bold mb-8 ">Contact Us</h3>
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl  w-full px-6">
 				{/* Contact Information Section */}
 				<div>

@@ -4,8 +4,6 @@ import { useAuth } from '../../store/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const URL = "http://localhost:8080/api/auth/register";
-
 const Register = () => {
 
         const [user, setUser] = useState({
@@ -16,7 +14,8 @@ const Register = () => {
         }); 
 
         const navigate = useNavigate();
-        const {storeTokenInLS} = useAuth()
+        const {storeTokenInLS, API} = useAuth()
+        const URL = `${API}/api/auth/register`;
 
         const handleChange = (e) => {
                 setUser({

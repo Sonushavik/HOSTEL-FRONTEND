@@ -12,6 +12,8 @@ export const AuthProvider = ({ children }) => {
 	};
 
 	let isLoggedIn = !!token;
+	const API = import.meta.env.VITE_APP_URI_API;
+	console.log(API)
 
 	const LogoutUser = () => {
 		setToken("");
@@ -20,7 +22,7 @@ export const AuthProvider = ({ children }) => {
 
 	const userAuthentication = async () => {
 		try {
-			const response = await fetch("http://localhost:8080/api/auth/user", {
+			const response = await fetch(`${API}/api/auth/user`, {
 				method: "GET",
 				headers: {
 					Authorization: authorizationToken,
@@ -51,6 +53,7 @@ export const AuthProvider = ({ children }) => {
 				LogoutUser,
 				user,
 				token,
+				API,
 			}}
 		>
 			{children}

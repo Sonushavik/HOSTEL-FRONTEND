@@ -24,7 +24,8 @@ const Profile = () => {
         email: user.email || "",
         phone: user.phone || ""
       });
-          console.log("Profile ID changed:", userId);
+      
+      // console.log("Profile ID changed:", userId);
 
     }
   }, [user,userId]);

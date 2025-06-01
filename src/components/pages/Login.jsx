@@ -4,16 +4,15 @@ import { useAuth } from "../../store/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-const URL = "http://localhost:8080/api/auth/login";
-
 const Login = () => {
 	const [user, setUser] = useState({
 		email: "",
 		password: "",
 	});
 
-	const { storeTokenInLS } = useAuth();
+	const { storeTokenInLS, API } = useAuth();
+
+	const URL = `${API}/api/auth/login`;
 
 	const navigate = useNavigate();
 	const handleChange = (e) => {
@@ -42,7 +41,7 @@ const Login = () => {
 				toast.success(res_data.msg || "Logged in successfully!");
 				setUser({ email: "", password: "" });
 				// alert(res_data.msg);
-				setTimeout(() =>navigate("/"), 5000 )
+				setTimeout(() =>navigate("/"), 3000 )
 
 			} else if (res_data.extraDetails) {
 				toast.error(res_data.extraDetails || "please enter correct email and password!!")

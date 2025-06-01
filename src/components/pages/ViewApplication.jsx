@@ -6,11 +6,13 @@ import generatePDF, { Resolution, Margin } from 'react-to-pdf';
 
 
 const ViewApplication = () => {
-	const { token } = useAuth();
+	const { token,API } = useAuth();
 	const { userId } = useParams();
 	const [applicationData, setApplicationData] = useState(null);
 	const [error, setError] = useState(null);
         const navigate = useNavigate();
+
+	const URL = `${API}/api/form/fetchApplicationData/${userId}`
 
         const options = {
                  method: 'open',
@@ -33,8 +35,7 @@ const ViewApplication = () => {
 
 	const getApplicationData = async () => {
 		try {
-			const response = await axios.get(
-				`http://localhost:8080/api/form/fetchApplicationData/${userId}`,
+			const response = await axios.get(URL,
 				{
 					headers: {
 						Authorization: `Bearer ${token}`,
@@ -75,13 +76,12 @@ const ViewApplication = () => {
 
 	if (!applicationData) {
 		return (
-			<div className="text-white text-center mt-10">
+			<div className="text-black text-center m-10 h-screen">
 				Loading application data...
 			</div>
 		);
 	}
 
-        
 
 	return (
 
